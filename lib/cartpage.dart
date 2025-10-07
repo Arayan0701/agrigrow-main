@@ -217,10 +217,10 @@ class _CartPageState extends State<CartPage> {
 
   Widget _buildBottomNavBar() => BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home, color: Colors.green), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart, color: Colors.green), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications_none, color: Colors.green), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline, color: Colors.green), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.home, color: Colors.green), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart, color: Colors.green), label: 'Cart'),
+          BottomNavigationBarItem(icon: Icon(Icons.notifications_none, color: Colors.green), label: 'Notifications'),
+          BottomNavigationBarItem(icon: Icon(Icons.person_outline, color: Colors.green), label: 'Profile'),
         ],
       );
 }

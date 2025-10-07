@@ -13,14 +13,14 @@ class SideMenu extends StatelessWidget {
           children: <Widget>[
             // Header section with user info
             DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.green,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 30,
                     backgroundColor: Colors.white,
                     child: Icon(
@@ -29,8 +29,8 @@ class SideMenu extends StatelessWidget {
                       color: Colors.green,
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Text(
+                  const SizedBox(height: 10),
+                  const Text(
                     'Agri Grow',
                     style: TextStyle(
                       color: Colors.white,
@@ -38,7 +38,7 @@ class SideMenu extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
                     'agrigroup@gmail.com',
                     style: TextStyle(
@@ -49,31 +49,29 @@ class SideMenu extends StatelessWidget {
                 ],
               ),
             ),
-            
+
             // Menu items
             _buildMenuItem(
               icon: Icons.shopping_bag,
               title: 'My Orders',
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('My Orders clicked')),
+                  const SnackBar(content: Text('My Orders clicked')),
                 );
               },
             ),
-            
             _buildMenuItem(
               icon: Icons.person,
               title: 'My Profile',
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ProfilePage()),
                 );
               },
             ),
-            
             _buildMenuItem(
               icon: Icons.location_on,
               title: 'Delivery Address',
@@ -82,49 +80,43 @@ class SideMenu extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => DeliveryAddressPage()),
-                ); // Close drawer
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Delivery Address clicked')),
                 );
               },
             ),
-            
             _buildMenuItem(
               icon: Icons.payment,
               title: 'Payment Methods',
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Payment Methods clicked')),
+                  const SnackBar(content: Text('Payment Methods clicked')),
                 );
               },
             ),
-            
             _buildMenuItem(
               icon: Icons.contact_support,
               title: 'Contact Us',
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Contact Us clicked')),
+                  const SnackBar(content: Text('Contact Us clicked')),
                 );
               },
             ),
-            
-            Divider(height: 20, thickness: 1),
-            
+
+            const Divider(height: 20, thickness: 1),
+
             // Logout button
             _buildMenuItem(
               icon: Icons.logout,
               title: 'Log Out',
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 _showLogoutDialog(context);
               },
               color: Colors.red,
             ),
-            
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
           ],
         ),
       ),
@@ -138,10 +130,7 @@ class SideMenu extends StatelessWidget {
     Color color = Colors.black87,
   }) {
     return ListTile(
-      leading: Icon(
-        icon,
-        color: color,
-      ),
+      leading: Icon(icon, color: color),
       title: Text(
         title,
         style: TextStyle(
@@ -153,26 +142,30 @@ class SideMenu extends StatelessWidget {
     );
   }
 
+  // 🔹 Updated logout dialog to navigate to Login page
   void _showLogoutDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Log Out'),
-          content: Text('Are you sure you want to log out?'),
+          title: const Text('Log Out'),
+          content: const Text('Are you sure you want to log out?'),
           actions: <Widget>[
             TextButton(
-              child: Text('Cancel', style: TextStyle(color: Colors.green)),
+              child: const Text('Cancel', style: TextStyle(color: Colors.green)),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(); // Close dialog
               },
             ),
             TextButton(
-              child: Text('Log Out', style: TextStyle(color: Colors.red)),
+              child: const Text('Log Out', style: TextStyle(color: Colors.red)),
               onPressed: () {
-                Navigator.of(context).pop();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Logged out successfully')),
+                Navigator.of(context).pop(); // Close dialog
+                // Navigate to Login page and clear all previous routes
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/Login',
+                  (route) => false,
                 );
               },
             ),
@@ -182,4 +175,3 @@ class SideMenu extends StatelessWidget {
     );
   }
 }
-

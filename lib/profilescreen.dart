@@ -12,9 +12,9 @@ class _ProfilePageState extends State<ProfilePage> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nameController =
-      TextEditingController(text: "Agri Grow");
+      TextEditingController(text: "Agri Tech");
   final TextEditingController _emailController =
-      TextEditingController(text: "agrigrow@gmail.com");
+      TextEditingController(text: "agritech@gmail.com");
   final TextEditingController _phoneController =
       TextEditingController(text: "+91 9725853306");
 
@@ -134,7 +134,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.green[700],
+                    color: Colors.black,
                   ),
                 ),
 
@@ -225,7 +225,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: const Padding(
                               padding: EdgeInsets.symmetric(vertical: 16),
                               child: Text(
-                                "Save",
+                                "Update Profile",
                                 style: TextStyle(fontSize: 16),
                               ),
                             ),

@@ -201,8 +201,7 @@ class HomeScreen extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: categories.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       crossAxisSpacing: 12,
                       mainAxisSpacing: 12,
@@ -210,23 +209,46 @@ class HomeScreen extends StatelessWidget {
                     ),
                     itemBuilder: (context, index) {
                       final category = categories[index];
-                      return Card(
-                        elevation: 3,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14)),
-                        child: Center(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(category["icon"],
-                                  size: 40, color: Colors.green),
-                              const SizedBox(height: 8),
-                              Text(
-                                category["label"],
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
+                      return GestureDetector(
+                        onTap: () {
+                          switch (index) {
+                            case 0: // Videos
+                              Navigator.pushNamed(context, '/VideoPage');
+                              break;
+                            case 1: // Address
+                              Navigator.pushNamed(context, '/DeliveryAddress');
+                              break;
+                            case 2: // Best Offers
+                              Navigator.pushNamed(context, '/OfferProduct');
+                              break;
+                            case 3: // Soil Testing
+                              Navigator.pushNamed(context, '/SoilTestPage');
+                              break;
+                            case 4: // Rate Us
+                              Navigator.pushNamed(context, '/ThankYouPage');
+                              break;
+                    
+                            case 5: // Expert
+                              Navigator.pushNamed(context, '/ExpertPage');
+                              break;
+                          }
+                        },
+                        child: Card(
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14)),
+                          child: Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(category["icon"], size: 40, color: Colors.green),
+                                const SizedBox(height: 8),
+                                Text(
+                                  category["label"],
+                                  style: const TextStyle(fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );
@@ -326,8 +348,15 @@ class ProductCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   color: Colors.grey[200],
                 ),
-                child: Icon(Icons.grass ,
-                    size: 50, color: const Color.fromARGB(255, 172, 0, 0)),
+                child: product["image"]!.startsWith('http')
+                    ? Image.network(
+                        product["image"]!,
+                        fit: BoxFit.contain,
+                      )
+                    : Image.asset(
+                        product["image"]!,
+                        fit: BoxFit.contain,
+                      ),
               ),
               const SizedBox(height: 8),
 
@@ -402,7 +431,15 @@ class ProductCard extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Navigate to product detail page
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductScreen(),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green[800],
                     padding:

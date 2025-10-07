@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
 
 dev_dependencies:
   flutter_test:
@@ -21,3 +22,15 @@ flutter:
     - assets/images/welcome.png
     - assets/icons/facebook.png
     - assets/icons/google.jpg
+    - assets/icons/logo.png
+    - assets/images/background_image.png
+    - assets/icons/welcome.jpg
+    - assets/images/home_2.jpg
+    - assets/images/home_3.jpg
+    - assets/images/farmer_1.jpg
+    - assets/images/farmer_2.jpg
+    - assets/images/farmer_3.png
+    - assets/images/farmer_4.png
+    - assets/images/farmer_5.png
+
+

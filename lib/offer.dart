@@ -1,14 +1,25 @@
+import 'package:agrigrow/home_screen.dart';
+import 'package:agrigrow/notificationsscreen.dart';
+import 'package:agrigrow/profilescreen.dart';
 import 'package:flutter/material.dart';
 
-class OfferProduct extends StatelessWidget {
+class OfferProductsScreen extends StatefulWidget {
+  const OfferProductsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<OfferProductsScreen> createState() => _OfferProductsScreenState();
+}
+
+class _OfferProductsScreenState extends State<OfferProductsScreen> {
+  int _selectedIndex = 1;
+
   final List<Product> products = [
     Product(
-      name: 'Aries Agro Limited Agromin Gold',
+      name: 'Aries Agro Limited Agromin',
       price: 2060.00,
       oldPrice: 3060.00,
       save: 1000.00,
-      imageUrl: 'https://via.placeholder.com/150',
-      badgeUrl: 'https://via.placeholder.com/32',
+      imageUrl: 'assets/images/home_2.jpg',
       rating: 4.5,
       reviews: 128,
     ),
@@ -17,93 +28,60 @@ class OfferProduct extends StatelessWidget {
       price: 350.00,
       oldPrice: 500.00,
       save: 150.00,
-      imageUrl: 'https://via.placeholder.com/150',
-      badgeUrl: 'https://via.placeholder.com/32',
+      imageUrl: 'assets/images/home_3.jpg',
       rating: 4.2,
       reviews: 89,
     ),
     Product(
-      name: 'Aries Agro Limited Agromin Gold',
-      price: 2060.00,
-      oldPrice: 3060.00,
-      save: 1000.00,
-      imageUrl: 'https://via.placeholder.com/150',
-      badgeUrl: 'https://via.placeholder.com/32',
-      rating: 4.5,
-      reviews: 128,
+      name: 'Hybrid Wheat Seeds',
+      price: 780.00,
+      oldPrice: 1000.00,
+      save: 220.00,
+      imageUrl: 'assets/images/home_3.jpg',
+      rating: 4.4,
+      reviews: 64,
     ),
     Product(
       name: 'Aries Agro Limited Agromin Gold',
       price: 2060.00,
       oldPrice: 3060.00,
       save: 1000.00,
-      imageUrl: 'https://via.placeholder.com/150',
-      badgeUrl: 'https://via.placeholder.com/32',
+      imageUrl: 'assets/images/home_3.jpg',
       rating: 4.5,
       reviews: 128,
     ),
-    Product(
-      name: 'Aries Agro Limited Agromin Gold',
-      price: 2060.00,
-      oldPrice: 3060.00,
-      save: 1000.00,
-      imageUrl: 'https://via.placeholder.com/150',
-      badgeUrl: 'https://via.placeholder.com/32',
-      rating: 4.5,
-      reviews: 128,
-    ),
-    Product(
-      name: 'Aries Agro Limited Agromin Gold',
-      price: 2060.00,
-      oldPrice: 3060.00,
-      save: 1000.00,
-      imageUrl: 'https://via.placeholder.com/150',
-      badgeUrl: 'https://via.placeholder.com/32',
-      rating: 4.5,
-      reviews: 128,
-    ),
-    Product(
-      name: 'Aries Agro Limited Agromin Gold',
-      price: 2060.00,
-      oldPrice: 3060.00,
-      save: 1000.00,
-      imageUrl: 'https://via.placeholder.com/150',
-      badgeUrl: 'https://via.placeholder.com/32',
-      rating: 4.5,
-      reviews: 128,
-    ),
-    Product(
-      name: 'Aries Agro Limited Agromin Gold',
-      price: 2060.00,
-      oldPrice: 3060.00,
-      save: 1000.00,
-      imageUrl: 'https://via.placeholder.com/150',
-      badgeUrl: 'https://via.placeholder.com/32',
-      rating: 4.5,
-      reviews: 128,
-    ),
-    Product(
-      name: 'Aries Agro Limited Agromin Gold',
-      price: 2060.00,
-      oldPrice: 3060.00,
-      save: 1000.00,
-      imageUrl: 'https://via.placeholder.com/150',
-      badgeUrl: 'https://via.placeholder.com/32',
-      rating: 4.5,
-      reviews: 128,
-    ),
-    
-    // Add more diverse products if needed
   ];
 
-  
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    if (index == 0) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) =>  HomeScreen()),
+      );
+     
+    } else if (index == 2) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) =>  NotificationScreen()),
+      );
+    } else if (index == 3) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) =>  ProfilePage()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          // Background Circles
+          // Background decorative circles
           Positioned(
             top: -80,
             left: -60,
@@ -140,6 +118,7 @@ class OfferProduct extends StatelessWidget {
               ),
             ),
           ),
+
           // Main content
           SafeArea(
             child: Padding(
@@ -147,12 +126,12 @@ class OfferProduct extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // AppBar replacement
+                  // Header
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.menu, color: Colors.black),
+                        icon: const Icon(Icons.menu, color: Colors.black),
                         onPressed: () {},
                       ),
                       Text(
@@ -163,40 +142,52 @@ class OfferProduct extends StatelessWidget {
                           fontSize: 22,
                         ),
                       ),
-                      CircleAvatar(
+                      const CircleAvatar(
                         backgroundImage: NetworkImage('https://via.placeholder.com/40'),
                       ),
                     ],
                   ),
-                  SizedBox(height: 16),
-                  // Header section
-                  Text('Best Deal',
-                      style: TextStyle(fontSize: 25, color: Colors.grey[600], fontWeight: FontWeight.w500)),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Best Deal',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.grey[600],
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
                   Row(
                     children: [
-                      Text('Offer Products',
-                          style: TextStyle(
-                              fontSize: 35,
-                              color: Colors.green[800],
-                              fontWeight: FontWeight.bold)),
-                      Spacer(),
+                      Text(
+                        'Offer Products',
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.green[800],
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Spacer(),
                       TextButton(
                         onPressed: () {},
-                        child: Text('View All',
-                            style: TextStyle(color: Colors.green[800])),
+                        child: Text(
+                          'View All',
+                          style: TextStyle(color: Colors.green[800]),
+                        ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 4),
-                  Text('80 types of seeds available',
-                      style: TextStyle(fontSize: 14, color: Colors.grey[700])),
-                  SizedBox(height: 16),
-                  // Products grid
+                  const SizedBox(height: 4),
+                  Text(
+                    '80 types of seeds available',
+                    style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                  ),
+                  const SizedBox(height: 16),
+                  // Product grid
                   Expanded(
                     child: GridView.builder(
                       itemCount: products.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 0.75,
                         mainAxisSpacing: 16,
@@ -214,33 +205,22 @@ class OfferProduct extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled), 
-            label: 'Home'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart), 
-            label: 'Cart'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_none), 
-            label: 'Notifications'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline), 
-            label: 'Profile'
-          ),
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Cart'),
+          BottomNavigationBarItem(icon: Icon(Icons.notifications_none), label: 'Notifications'),
+          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Profile'),
         ],
-        selectedItemColor: Colors.green[800],
+        selectedItemColor: Colors.green,
         unselectedItemColor: Colors.grey,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
       ),
     );
   }
 }
+
 
 class Product {
   final String name;
@@ -248,7 +228,6 @@ class Product {
   final double oldPrice;
   final double save;
   final String imageUrl;
-  final String badgeUrl;
   final double rating;
   final int reviews;
 
@@ -258,7 +237,6 @@ class Product {
     required this.oldPrice,
     required this.save,
     required this.imageUrl,
-    required this.badgeUrl,
     required this.rating,
     required this.reviews,
   });
@@ -283,12 +261,10 @@ class ProductCard extends StatelessWidget {
                 Center(
                   child: Image.network(
                     product.imageUrl, 
-                    height: 100,
+                    height: 60,
                     width: 100,
                     fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Icon(Icons.image_not_supported, size: 50);
-                    },
+
                   ),
                 ),
                 SizedBox(height: 8),
@@ -298,7 +274,7 @@ class ProductCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: 14,
+                        fontSize: 9,
                         color: Colors.black87)),
                 SizedBox(height: 4),
                 // Rating
@@ -307,37 +283,37 @@ class ProductCard extends StatelessWidget {
                     Icon(Icons.star, color: Colors.amber, size: 14),
                     SizedBox(width: 4),
                     Text('${product.rating}',
-                        style: TextStyle(fontSize: 12)),
+                        style: TextStyle(fontSize: 9)),
                     SizedBox(width: 4),
                     Text('(${product.reviews})',
-                        style: TextStyle(fontSize: 12, color: Colors.grey)),
+                        style: TextStyle(fontSize: 9, color: Colors.grey)),
                   ],
                 ),
-                SizedBox(height: 4),
+                SizedBox(height: 1),
                 // Price information
                 Text('₹${product.price.toStringAsFixed(2)}',
                     style: TextStyle(
-                        fontSize: 16, 
+                        fontSize: 8, 
                         fontWeight: FontWeight.bold,
                         color: Colors.green[800])),
                 Row(
                   children: [
                     Text('₹${product.oldPrice.toStringAsFixed(2)}',
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 8,
                           decoration: TextDecoration.lineThrough,
                           color: Colors.grey,
                         )),
                     SizedBox(width: 8),
                     Text('Save ₹${product.save.toStringAsFixed(2)}',
                         style: TextStyle(
-                            fontSize: 12, 
+                            fontSize: 7, 
                             color: Colors.green,
                             fontWeight: FontWeight.w500)),
                   ],
                 ),
                 // Add to cart button
-                SizedBox(height: 8),
+                SizedBox(height: 1),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -346,24 +322,13 @@ class ProductCard extends StatelessWidget {
                       backgroundColor: Colors.green[800],
                       padding: EdgeInsets.symmetric(vertical: 4),
                     ),
-                    child: Text('Add to Cart', style: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold)),
+                    child: Text('Add to Cart', style: TextStyle(fontSize: 7, color: Colors.white, fontWeight: FontWeight.bold)),
                   ),
                 ),
               ],
             ),
           ),
-          Positioned(
-            top: 8,
-            right: 8,
-            child: Image.network(
-              product.badgeUrl,
-              height: 28,
-              width: 28,
-              errorBuilder: (context, error, stackTrace) {
-                return SizedBox();
-              },
-            ),
-          ),
+          
         ],
       ),
     );

@@ -19,7 +19,7 @@ class _ProductScreenState extends State<ProductScreen> {
       price: 2060.00,
       oldPrice: 3060.00,
       save: 1000.00,
-      imageUrl: 'assets/icons/welcome.jpg', // ✅ Local asset
+      imageUrl: 'assets/images/home_2.jpg', // ✅ Local asset
       rating: 4.5,
       reviews: 128,
     ),
@@ -28,7 +28,7 @@ class _ProductScreenState extends State<ProductScreen> {
       price: 350.00,
       oldPrice: 500.00,
       save: 150.00,
-      imageUrl: 'assets/icons/welcome.jpg', // ✅ Network
+      imageUrl: 'assets/images/home_3.jpg', // ✅ Network
       rating: 4.2,
       reviews: 89,
     ),
@@ -37,7 +37,7 @@ class _ProductScreenState extends State<ProductScreen> {
       price: 200.00,
       oldPrice: 300.00,
       save: 100.00,
-      imageUrl: 'assets/icons/welcome.jpg',
+      imageUrl: 'assets/images/home_2.jpg',
       rating: 4.1,
       reviews: 45,
     ),
@@ -46,7 +46,7 @@ class _ProductScreenState extends State<ProductScreen> {
       price: 400.00,
       oldPrice: 550.00,
       save: 150.00,
-      imageUrl: 'assets/icons/welcome.jpg',
+      imageUrl: 'assets/images/home_3.jpg',
       rating: 4.3,
       reviews: 60,
     ),
@@ -55,7 +55,7 @@ class _ProductScreenState extends State<ProductScreen> {
       price: 2060.00,
       oldPrice: 3060.00,
       save: 1000.00,
-      imageUrl: 'assets/icons/welcome.jpg', // ✅ Local asset
+      imageUrl: 'assets/images/home_3.jpg', // ✅ Local asset
       rating: 4.5,
       reviews: 128,
     ),
@@ -64,7 +64,7 @@ class _ProductScreenState extends State<ProductScreen> {
       price: 2060.00,
       oldPrice: 3060.00,
       save: 1000.00,
-      imageUrl: 'assets/icons/welcome.jpg', // ✅ Local asset
+      imageUrl: 'assets/images/home_2.jpg', // ✅ Local asset
       rating: 4.5,
       reviews: 128,
     ),
@@ -189,7 +189,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     children: [
                       Text('Best Products',
                           style: TextStyle(
-                              fontSize: 35,
+                              fontSize: 25,
                               color: Colors.green[800],
                               fontWeight: FontWeight.bold)),
                       const Spacer(),
@@ -277,7 +277,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
+      elevation: 1,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -289,14 +289,14 @@ class ProductCard extends StatelessWidget {
               child: product.imageUrl.startsWith('http')
                   ? Image.network(
                       product.imageUrl,
-                      height: 100,
-                      width: 100,
+                      height: 50,
+                      width: 50,
                       fit: BoxFit.contain,
                     )
                   : Image.asset(
                       product.imageUrl,
-                      height: 100,
-                      width: 100,
+                      height: 60,
+                      width: 90,
                       fit: BoxFit.contain,
                     ),
             ),
@@ -307,7 +307,7 @@ class ProductCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 14,
+                    fontSize: 7,
                     color: Colors.black87)),
             const SizedBox(height: 4),
             // Rating
@@ -316,37 +316,37 @@ class ProductCard extends StatelessWidget {
                 const Icon(Icons.star, color: Colors.amber, size: 14),
                 const SizedBox(width: 4),
                 Text('${product.rating}',
-                    style: const TextStyle(fontSize: 12)),
+                    style: const TextStyle(fontSize: 8)),
                 const SizedBox(width: 4),
                 Text('(${product.reviews})',
                     style:
-                        const TextStyle(fontSize: 12, color: Colors.grey)),
+                        const TextStyle(fontSize: 9, color: Colors.grey)),
               ],
             ),
             const SizedBox(height: 4),
             // Price Information
             Text('₹${product.price.toStringAsFixed(2)}',
                 style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 8,
                     fontWeight: FontWeight.bold,
                     color: Colors.green[800])),
             Row(
               children: [
                 Text('₹${product.oldPrice.toStringAsFixed(2)}',
                     style: const TextStyle(
-                      fontSize: 12,
+                      fontSize: 9,
                       decoration: TextDecoration.lineThrough,
                       color: Colors.grey,
                     )),
                 const SizedBox(width: 8),
                 Text('Save ₹${product.save.toStringAsFixed(2)}',
                     style: const TextStyle(
-                        fontSize: 12,
+                        fontSize: 7,
                         color: Colors.green,
                         fontWeight: FontWeight.w500)),
               ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 1),
             // Add to cart button
             SizedBox(
               width: double.infinity,
@@ -361,7 +361,7 @@ class ProductCard extends StatelessWidget {
                 ),
                 child: const Text('Add to Cart',
                     style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 7,
                         color: Colors.white,
                         fontWeight: FontWeight.bold)),
               ),
